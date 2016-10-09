@@ -1,0 +1,19 @@
+{
+    "name": "abellion/laravel-cors",
+    "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Laravel application",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Antoine Bellion",
+            "email": "antoinebellion@msn.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Abellion\\Cors\\": "src/"
+        }
+    }
+}
