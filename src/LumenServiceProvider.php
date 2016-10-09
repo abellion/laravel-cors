@@ -13,4 +13,8 @@ class LumenServiceProvider extends ServiceProvider
 			Middleware\OriginsMiddleware::class
 		]);
 	}
+
+	public function register()
+	{
+	}
 }
