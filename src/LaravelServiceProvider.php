@@ -2,14 +2,15 @@
 
 namespace Abellion\Cors;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 
-class LumenServiceProvider extends ServiceProvider
+class LaravelServiceProvider extends ServiceProvider
 {
-	public function boot()
+	public function boot(Kernel $kernel)
 	{
-		$this->app['router']->pushMiddleware(Middleware\OptionsMiddleware::class);
-		$this->app['router']->pushMiddleware(Middleware\OriginsMiddleware::class);
+		$kernel->pushMiddleware(Middleware\OptionsMiddleware::class);
+		$kernel->pushMiddleware(Middleware\OriginsMiddleware::class);
 	}
 
 	public function register()
