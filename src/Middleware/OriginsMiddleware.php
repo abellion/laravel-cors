@@ -6,10 +6,21 @@ use Illuminate\Http\Request;
 
 class OriginsMiddleware
 {
+	/**
+	 * Origins patterns
+	 *
+	 * @var array
+	 */
 	public static $ORIGINS = [
 		"/.+/"
 	];
 
+	/**
+	 * Get the origin depending of the conf
+	 *
+	 * @param  Request $request
+	 * @return mixed
+	 */
     private function getOrigin(Request $request)
     {
     	$origin = $request->headers->get('Origin');
@@ -23,6 +34,13 @@ class OriginsMiddleware
     	return null;
     }
 
+    /**
+     * Add the `Access-Control-Allow-Origin` if the origin match one of the patterns
+     *
+     * @param  Request  $request
+     * @param  \Closure $next
+     * @return Illuminate\Http\Response
+     */
 	public function handle(Request $request, \Closure $next)
 	{
 	    $response = $next($request);
