@@ -3,6 +3,8 @@
 namespace Abellion\Cors\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class OptionsMiddleware
 {
@@ -25,7 +27,15 @@ class OptionsMiddleware
      */
 	public function handle(Request $request, \Closure $next)
 	{
-	    $response = $next($request);
+		try {
+		    $response = $next($request);
+		} catch (HttpException $e) {
+			if ($request->isMethod('OPTIONS')) {
+			    $response = new Response();
+			} else {
+				throw $e;
+			}
+		}
 
 	    $response->headers->add(self::$OPTIONS);
 

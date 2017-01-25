@@ -9,8 +9,8 @@ class LaravelServiceProvider extends ServiceProvider
 {
 	public function boot(Kernel $kernel)
 	{
-		$kernel->pushMiddleware(Middleware\OptionsMiddleware::class);
 		$kernel->pushMiddleware(Middleware\OriginsMiddleware::class);
+		$kernel->pushMiddleware(Middleware\OptionsMiddleware::class);
 	}
 
 	public function register()
